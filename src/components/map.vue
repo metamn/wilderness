@@ -1,13 +1,12 @@
 <template lang="html">
   <section>
-    <h3>Home</h3>
-    <router-link :to="{ name: 'maps', params: {} }">Maps</router-link>
+    <h3>{{ $route.params.slug }}</h3>
   </section>
 </template>
 
 <script>
   export default {
-    name: 'home'
+    name: 'map'
   }
 </script>
 

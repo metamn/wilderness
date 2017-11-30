@@ -21,6 +21,11 @@ const getters = {
   mapsListOfNamesAsString: state => {
     return state.maps.map(item => item.name).join(', ')
   },
+  /**
+   * The number of Maps
+   * @param  {Object} state The state object
+   * @return {Integer}       The number of Maps
+   */
   mapsCount: state => {
     return (state.maps[0] === 'No maps yet') ? 0 : state.maps.length
   }

@@ -1,4 +1,5 @@
 import {createClient} from 'contentful'
+import {slugify} from 'lodash-addons'
 
 // Authenticate
 const apiClient = createClient({
@@ -7,9 +8,11 @@ const apiClient = createClient({
 })
 
 // Get Maps
+// - returns Maps ordered by the `order` field
 const getMapList = () => {
   return apiClient.getEntries({
-    content_type: 'map'
+    content_type: 'map',
+    order: 'fields.order'
   })
 }
 
@@ -17,7 +20,8 @@ const getMapList = () => {
 const parseMap = (response) => {
   return response.items.map(item => ({
     name: item.fields.name,
-    description: item.fields.description
+    description: item.fields.description,
+    slug: slugify(item.fields.name)
   }))
 }
 
