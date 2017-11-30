@@ -1,10 +1,13 @@
 <template lang="html">
-  <section>
-    <h3 v-if="!mapEmpty">{{ getMap.name }}</h3>
-    <div v-else>
-      No map found.
+  <section v-if="!mapEmpty">
+    <h3>{{ getMap.name }}</h3>
+    <div class="">
+      {{ getMap.description }}
     </div>
   </section>
+  <div v-else>
+    No map found
+  </div>
 </template>
 
 <script>
@@ -13,16 +16,23 @@
   export default {
     name: 'map',
     computed: {
+      slug () {
+        // TODO: Check is route params has to be sanitized or not
+        return this.$route.params.slug
+      },
       ...mapGetters([
-        'getMapBySlug',
         'mapEmpty',
         'getMap'
       ])
     },
     mounted: function () {
-      const slug = this.$route.params.slug
-      const mapBySlug = this.$store.getters.getMapBySlug(slug)
-      if (mapBySlug) this.$store.dispatch('GET_MAP', { id: mapBySlug.id })
+      const mapBySlug = this.$store.getters.getMapBySlug(this.slug)
+      if (mapBySlug) {
+        this.$store.dispatch('GET_MAP', { id: mapBySlug.id })
+      } else {
+        // TODO: Where to mitigate bad function returns, like mapBySlug not returning an id field ????
+        // We need to get maps first to get the ID of this slug
+      }
     }
   }
 </script>
