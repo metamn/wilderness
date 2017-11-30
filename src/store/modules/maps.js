@@ -13,26 +13,14 @@ const state = {
 
 // Computed data
 const getters = {
-  /**
-   * A comma separated list of Map names
-   * @param  {Object} state The state object
-   * @return {String}       A comma separated list of Map names
-   */
-  mapsListOfNamesAsString: state => {
-    return state.maps.map(item => item.name).join(', ')
-  },
-  /**
-   * The number of Maps
-   * @param  {Object} state The state object
-   * @return {Integer}       The number of Maps
-   */
-  mapsCount: state => {
-    return (state.maps[0] === 'No maps yet') ? 0 : state.maps.length
-  }
 }
 
 // Get data
 const actions = {
+  GET_MAP_BY_SLUG: function ({ state }, params) {
+    console.log('slug:' + params.slug)
+    return state.maps.filter(item => item.slug === params.slug)
+  },
   GET_MAP_LIST: function ({ commit }) {
     api.getMapList()
     .then((response) => {

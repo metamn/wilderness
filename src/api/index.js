@@ -7,12 +7,11 @@ const apiClient = createClient({
   accessToken: 'a8dcf7a9aeb2b6898fc58b0dae20d92014fc6ae72c06c61276293d300e4001f7'
 })
 
-// Get Maps
-// - returns Maps ordered by the `order` field
-const getMapList = () => {
-  return apiClient.getEntries({
+// Get a map
+const getMap = (slug) => {
+  return apiClient.getEntry({
     content_type: 'map',
-    order: 'fields.order'
+    'fields.name': 'Wilderness'
   })
 }
 
@@ -25,8 +24,18 @@ const parseMap = (response) => {
   }))
 }
 
+// Get Maps
+// - returns Maps ordered by the `order` field
+const getMapList = () => {
+  return apiClient.getEntries({
+    content_type: 'map',
+    order: 'fields.order'
+  })
+}
+
 // Export api functions
 export default {
   getMapList,
-  parseMap
+  parseMap,
+  getMap
 }
