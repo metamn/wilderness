@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    <h3 v-if="!mapEmpty">{{ this.map.name }}</h3>
+    <h3 v-if="!mapEmpty">{{ getMap.name }}</h3>
     <div v-else>
       No map found.
     </div>
@@ -8,17 +8,15 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'map',
     computed: {
-      ...mapState([
-        'map'
-      ]),
       ...mapGetters([
         'getMapBySlug',
-        'mapEmpty'
+        'mapEmpty',
+        'getMap'
       ])
     },
     mounted: function () {

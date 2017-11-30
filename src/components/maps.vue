@@ -3,7 +3,7 @@
     <h3>Maps</h3>
     <router-link
       v-if="!mapsEmpty"
-      v-for="map in maps.maps"
+      v-for="map in getMaps"
       :key="map.id"
       :to="{
         name: 'map',
@@ -18,16 +18,14 @@
 </template>
 
 <script>
-  import { mapState, mapGetters } from 'vuex'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'maps',
     computed: {
-      ...mapState([
-        'maps'
-      ]),
       ...mapGetters([
-        'mapsEmpty'
+        'mapsEmpty',
+        'getMaps'
       ])
     },
     mounted: function () {

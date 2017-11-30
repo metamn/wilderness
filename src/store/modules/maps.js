@@ -7,7 +7,9 @@ const state = {
    * @type {Array}
    *
    */
-  maps: ['No maps yet'],
+  maps: [
+    'No maps yet'
+  ],
   /**
    * A single Map object
    * @type {Object}
@@ -21,6 +23,12 @@ const state = {
 
 // Computed data
 const getters = {
+  getMaps () {
+    return state.maps
+  },
+  getMap () {
+    return state.map
+  },
   getMapBySlug: state => (slug) => {
     return state.maps.find(item => item.slug === slug)
   },
