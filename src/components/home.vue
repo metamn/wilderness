@@ -1,6 +1,6 @@
 <template lang="html">
   <section>
-    {{ mapsCount }} maps: {{ mapsListOfNames }}
+    {{ mapsCount }} maps: {{ mapsListOfNamesAsString }}
   </section>
 </template>
 
@@ -15,7 +15,7 @@
       ]),
       ...mapGetters([
         'mapsCount',
-        'mapsListOfNames'
+        'mapsListOfNamesAsString'
       ])
     },
     mounted: function () {

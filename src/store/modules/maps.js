@@ -2,13 +2,24 @@ import api from './../../api'
 
 // Data
 const state = {
+  /**
+   * An array of Map objects
+   * @type {Array}
+   *
+   * A Map object is defined in the api.parseMap()
+   */
   maps: ['No maps yet']
 }
 
 // Computed data
 const getters = {
-  mapsListOfNames: state => {
-    return state.maps.join(', ')
+  /**
+   * A comma separated list of Map names
+   * @param  {Object} state The state object
+   * @return {String}       A comma separated list of Map names
+   */
+  mapsListOfNamesAsString: state => {
+    return state.maps.map(item => item.name).join(', ')
   },
   mapsCount: state => {
     return (state.maps[0] === 'No maps yet') ? 0 : state.maps.length

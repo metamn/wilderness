@@ -15,7 +15,10 @@ const getMapList = () => {
 
 // Parse a map
 const parseMap = (response) => {
-  return response.items.map(item => item.fields.name)
+  return response.items.map(item => ({
+    name: item.fields.name,
+    description: item.fields.description
+  }))
 }
 
 // Export api functions
